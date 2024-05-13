@@ -1,0 +1,17 @@
+truc de choses
+oui
+haha
+
+BUFFER_SIZE = 1
+truc
+$
+
+oui
+h$
+
+var1 -> get_entire_line
+var2 -> left_overs 
+
+var1 = oui\n
+var2 = h
+
