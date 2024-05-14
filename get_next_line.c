@@ -6,7 +6,7 @@
 /*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 12:18:17 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/14 19:28:16 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/14 19:39:01 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ static char	*read_file(int fd, char *buf)
 	if (!buf)
 		buf = ft_calloc(1, 1);
 	buffer = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
-/* 	if (!buffer)
-	    return (free(buffer), buffer = NULL); */
+	if (!buffer)
+		return (free(buffer), buffer = NULL);
 	count_read = 1;
-	while ((count_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	count_read = read(fd, buffer, BUFFER_SIZE);
+	while (count_read > 0)
 	{
 		if (count_read == -1)
 			return (free(buffer), buffer = NULL);
@@ -42,6 +43,7 @@ static char	*read_file(int fd, char *buf)
 		buf = ft_join(buf, buffer);
 		if (ft_strchr(buf, '\n'))
 			break ;
+		count_read = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
 	return (buf);
